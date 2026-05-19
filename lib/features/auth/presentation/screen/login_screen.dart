@@ -14,8 +14,7 @@ import 'package:tracker_app/core/widgets/outline_button_with_icon_widget.dart';
 import 'package:tracker_app/core/widgets/primary_button.dart';
 import 'package:tracker_app/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:tracker_app/features/auth/presentation/bloc/login_state.dart';
-import 'package:http/http.dart' as http;
-import 'package:uuid/uuid.dart';
+ 
 
 class LoginScrren extends StatefulWidget {
   const LoginScrren({super.key});
@@ -37,23 +36,7 @@ class _LoginScrrenState extends State<LoginScrren> {
     loginKey = GlobalKey<FormState>();
   }
 
-  void getSuggestion(String input) async {
-    var sessionToken = Uuid().v4();
-    var kPlacesApiKey = "AIzaSyBPSXdTjdgdSRl7GVELKY4xzWQMcv9AdO0";
-    // String kPlacesApiKey = "AIzaSyD-kLtwY7BDNDJdrTLlJ5h2ldlC0Cn9UsY";
-    String baseURL =
-        'https://maps.googleapis.com/maps/api/place/autocomplete/json';
-    Uri request = Uri.parse(
-      '$baseURL?input=$input&key=$kPlacesApiKey&sessiontoken=$sessionToken',
-    );
-    var response = await http.get(request);
-    if (response.statusCode == 200) {
-      // placeList = json.decode(response.body)['predictions'];
-      setState(() {});
-    } else {
-      throw Exception('Failed to load predictions');
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +98,7 @@ class _LoginScrrenState extends State<LoginScrren> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.emailAddress,
-                                onChange: (value) {
-                                  getSuggestion(value);
-                                },
+                               
                               ),
                               LabelWithTextFormField(
                                 label: "Password",
