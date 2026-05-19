@@ -1,0 +1,1 @@
+const String googleSvg ="assets/svg/google_icon.svg";
