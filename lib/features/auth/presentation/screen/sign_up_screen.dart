@@ -10,8 +10,8 @@ import 'package:tracker_app/core/widgets/async_call_wrapper_widget.dart';
 import 'package:tracker_app/core/widgets/label_with_text_form_field.dart';
 import 'package:tracker_app/core/widgets/outline_button_with_icon_widget.dart';
 import 'package:tracker_app/core/widgets/primary_button.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/sign_up_cubit.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/sign_up_state.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_state.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.isSuccess == true) {
           HelperUtils.showCustomToast(toastMsg: "Sign up successfully!");
@@ -137,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               onPressed: () {
                                 if (signUpKey.currentState!.validate()) {
                                   FocusScope.of(context).unfocus();
-                                  context.read<SignUpCubit>().signUp(
+                                  context.read<AuthCubit>().signUp(
                                     email: emailController.text,
                                     password: confirmPasswordController.text,
                                   );
@@ -152,7 +152,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             OutlineButtonWithIconWidget(
                               svgImage: googleSvg,
                               label: 'Sign up with Google',
-                              onTap: () {},
+                              onTap: () {
+                                context
+                                    .read<AuthCubit>()
+                                    .signInWithGoogleRequested();
+                              },
                             ),
                             InkWell(
                               onTap: () => context.pop(),

@@ -12,9 +12,8 @@ import 'package:tracker_app/core/widgets/async_call_wrapper_widget.dart';
 import 'package:tracker_app/core/widgets/label_with_text_form_field.dart';
 import 'package:tracker_app/core/widgets/outline_button_with_icon_widget.dart';
 import 'package:tracker_app/core/widgets/primary_button.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/login_cubit.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/login_state.dart';
- 
+import 'package:tracker_app/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_state.dart';
 
 class LoginScrren extends StatefulWidget {
   const LoginScrren({super.key});
@@ -36,11 +35,9 @@ class _LoginScrrenState extends State<LoginScrren> {
     loginKey = GlobalKey<FormState>();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state.isSuccess == true) {
           HelperUtils.showCustomToast(toastMsg: "Login successfully!");
@@ -98,7 +95,6 @@ class _LoginScrrenState extends State<LoginScrren> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.emailAddress,
-                               
                               ),
                               LabelWithTextFormField(
                                 label: "Password",
@@ -123,7 +119,7 @@ class _LoginScrrenState extends State<LoginScrren> {
                                 onPressed: () {
                                   if (loginKey.currentState!.validate()) {
                                     FocusScope.of(context).unfocus();
-                                    context.read<LoginCubit>().login(
+                                    context.read<AuthCubit>().login(
                                       email: emailController.text,
                                       password: passwordController.text,
                                     );

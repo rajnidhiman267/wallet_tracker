@@ -6,9 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:tracker_app/core/routes/app_route_name.dart';
 import 'package:tracker_app/features/auth/data/datasource/auth_remote_datasource.dart';
 import 'package:tracker_app/features/auth/data/repository/auth_repository_impl.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/login_cubit.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/sign_up_cubit.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/update_profile_cubit.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_cubit.dart';
+ import 'package:tracker_app/features/auth/presentation/bloc/update_profile_cubit.dart';
 import 'package:tracker_app/features/auth/presentation/screen/login_screen.dart';
 import 'package:tracker_app/features/auth/presentation/screen/profile_setup_screen.dart';
 import 'package:tracker_app/features/auth/presentation/screen/sign_up_screen.dart';
@@ -45,7 +44,7 @@ class AppRouter {
         name: AppRouteName.login,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => LoginCubit(
+            create: (context) => AuthCubit(
               authUseCase: AuthUseCase(
                 authRepository: AuthRepositoryImpl(
                   authRemoteDataSource: AuthRemoteDatasource(
@@ -76,7 +75,7 @@ class AppRouter {
 
           final signUpUseCase = AuthUseCase(authRepository: authRepository);
           return BlocProvider(
-            create: (_) => SignUpCubit(authUseCase: signUpUseCase),
+            create: (_) => AuthCubit(authUseCase: signUpUseCase),
             child: const SignUpScreen(),
           );
         },

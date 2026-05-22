@@ -1,12 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracker_app/features/auth/domain/usecases/auth_usecase.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/sign_up_state.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_state.dart';
+ 
 
-class ProfileSetupCubit extends Cubit<SignUpState> {
+class ProfileSetupCubit extends Cubit<AuthState> {
   final AuthUseCase updateProfileUseCase;
 
   ProfileSetupCubit({required this.updateProfileUseCase})
-    : super(const SignUpState());
+    : super(const AuthState());
 
   Future<void> updateProfile({required String name, String? photoUrl}) async {
     try {

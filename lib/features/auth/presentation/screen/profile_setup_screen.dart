@@ -8,7 +8,8 @@ import 'package:tracker_app/core/widgets/async_call_wrapper_widget.dart';
 import 'package:tracker_app/core/widgets/custom_profile_image_widget.dart';
 import 'package:tracker_app/core/widgets/label_with_text_form_field.dart';
 import 'package:tracker_app/core/widgets/primary_button.dart';
-import 'package:tracker_app/features/auth/presentation/bloc/sign_up_state.dart';
+import 'package:tracker_app/features/auth/presentation/bloc/auth_state.dart';
+ 
 import 'package:tracker_app/features/auth/presentation/bloc/update_profile_cubit.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileSetupCubit, SignUpState>(
+    return BlocConsumer<ProfileSetupCubit, AuthState>(
       listener: (context, state) {
         if (state.isSuccess == true) {
           HelperUtils.showCustomToast(toastMsg: "Profile updated successfully");
