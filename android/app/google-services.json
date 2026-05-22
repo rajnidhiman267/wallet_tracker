@@ -14,17 +14,17 @@
       },
       "oauth_client": [
         {
-          "client_id": "737565072368-bl21pihvokcjgp06da0hkhpm4h976mds.apps.googleusercontent.com",
+          "client_id": "737565072368-imf05mcdugjbcj56f65fkpbf5f47edms.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.tracker_app",
-            "certificate_hash": "eb9e8fd34d6c8d330aa960b9d1d89a37370ba278"
+            "certificate_hash": "94486ed0dcee056d26a80a3f9e8466f093edafd6"
           }
         },
         {
           "client_id": "737565072368-tnjju6490mn760c4210llpep4h64o8tn.apps.googleusercontent.com",
           "client_type": 3
-        }
+        } 
       ],
       "api_key": [
         {
