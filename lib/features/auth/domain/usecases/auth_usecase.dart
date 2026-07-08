@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tracker_app/features/auth/data/model/local_auth_model.dart' show LocalUserModel;
 import 'package:tracker_app/features/auth/domain/repository/auth_repository.dart';
 
 class AuthUseCase {
@@ -7,28 +6,23 @@ class AuthUseCase {
 
   AuthUseCase({required this.authRepository});
 
-  Future<UserCredential> signUpCall({
-    required String email,
-    required String password,
-  }) async {
-    return await authRepository.signUp(email: email, password: password);
-  }
+  Future<UserCredential> signUpCall(
+          {required String email, required String password}) =>
+      authRepository.signUp(email: email, password: password);
 
-  Future<void> loginCall({
-    required String email,
-    required String password,
-  }) async {
-    await authRepository.login(email: email, password: password);
-  }
+  Future<void> loginCall({required String email, required String password}) =>
+      authRepository.login(email: email, password: password);
 
-  Future<void> updateProfileCall({
-    required String name,
-    String? photoUrl,
-  }) async {
-    await authRepository.updateProfile(name: name, photoUrl: photoUrl);
-  }
+  Future<void> updateProfileCall({required String name, String? photoUrl}) =>
+      authRepository.updateProfile(name: name, photoUrl: photoUrl);
 
-  Future<void> signInWithGoogleCall() async {
-    return await authRepository.signInWithGoogleCall();
-  }
+  Future<void> signInWithGoogleCall() => authRepository.signInWithGoogleCall();
+
+  Future<void> signOut() => authRepository.signOut();
+
+  /// True only when: device has biometric hardware AND user has a saved session.
+  Future<bool> isBiometricRegistered() => authRepository.isBiometricRegistered();
+
+  Future<bool> authenticateWithBiometric() =>
+      authRepository.authenticateWithBiometric();
 }
